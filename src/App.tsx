@@ -1,7 +1,7 @@
-import React from "react";
+import styles from "./App.module.scss";
 
-const App = () => {
-  return <div>React + TypeScript + Webpack!</div>;
-};
+const App = (): JSX.Element => (
+  <h1 className={styles.redText}>Eslint Config Airbnb</h1>
+);
 
 export default App;
