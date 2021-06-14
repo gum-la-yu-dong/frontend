@@ -4,6 +4,7 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-viewport",
+    // TODO: css modules classname local identityName 설정
     "@storybook/preset-scss",
   ],
   typescript: {
