@@ -30,4 +30,24 @@ module.exports = {
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
   },
+  overrides: [
+    {
+      files: "./src/components/shared/**/*.tsx",
+      rules: {
+        "react/jsx-props-no-spreading": "off",
+      },
+    },
+    {
+      files: "./src/components/shared/Button/Button.tsx",
+      rules: {
+        "react/button-has-type": "off",
+      },
+    },
+    {
+      files: "**/*.stories.tsx",
+      rules: {
+        "import/no-extraneous-dependencies": "off",
+      },
+    },
+  ],
 };
