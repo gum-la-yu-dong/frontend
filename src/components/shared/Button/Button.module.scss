@@ -1,0 +1,13 @@
+.button {
+  width: 100%;
+  background-color: var(--primary-600);
+  color: var(--on-primary-600);
+  padding: 1rem;
+  border-radius: 0.5rem;
+
+  &.chip {
+    width: fit-content;
+    padding: 0.5rem 0.75rem;
+    border-radius: 1.5rem;
+  }
+}
