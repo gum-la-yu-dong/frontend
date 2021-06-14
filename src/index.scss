@@ -1,0 +1,39 @@
+@import "scss-reset/_reset.scss";
+
+// prettier-ignore
+$primary:
+   50 #eceff1 #000,
+  100 #cfd8dc #000,
+  200 #b0bec5 #000,
+  300 #90a4ae #000,
+  400 #78909c #000,
+  500 #607d8b #000,
+  600 #546e7a #fff,
+  700 #455a64 #fff,
+  800 #37474f #fff,
+  900 #263238 #fff;
+
+// prettier-ignore
+$complementary:
+   50 #ededed #000,
+  100 #d1d1d1 #000,
+  200 #b8b1af #000,
+  300 #9f918b #000,
+  400 #8c786f #000,
+  500 #7a6054 #fff,
+  600 #6e574d #fff,
+  700 #5e4a42 #fff,
+  800 #4f3e38 #fff,
+  900 #3f312d #fff;
+
+:root {
+  @each $key, $color, $onColor in $primary {
+    --primary-#{$key}: #{$color};
+    --on-primary-#{$key}: #{$onColor};
+  }
+
+  @each $key, $color, $onColor in $complementary {
+    --complemetary-#{$key}: #{$color};
+    --on-complemetary-#{$key}: #{$onColor};
+  }
+}
