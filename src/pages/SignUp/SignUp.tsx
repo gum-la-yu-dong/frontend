@@ -24,6 +24,7 @@ const SignUp = (): JSX.Element => {
 
   return (
     /* TODO: onSubmit */
+    /* TODO: Profile Input */
     <form className={cx("form")}>
       <LabelInput
         label="닉네임"

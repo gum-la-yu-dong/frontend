@@ -18,7 +18,6 @@ const LabelInput = ({
 }: LabelInputProps): JSX.Element => (
   <section className={cx("label-input", className)}>
     <label htmlFor={id}>{label}</label>
-    {/* eslint-disable-next-line react/jsx-props-no-spreading */}
     <Input id={id} {...props} />
   </section>
 );
