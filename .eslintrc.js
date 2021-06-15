@@ -50,5 +50,19 @@ module.exports = {
         "react/jsx-props-no-spreading": "off",
       },
     },
+    {
+      files: "**/*.tsx",
+      rules: {
+        "jsx-a11y/label-has-associated-control": [
+          "error",
+          {
+            labelComponents: [],
+            controlComponents: ["Input"],
+            assert: "either",
+            depth: 3,
+          },
+        ],
+      },
+    },
   ],
 };
