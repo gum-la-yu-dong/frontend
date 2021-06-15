@@ -1,0 +1,12 @@
+@use "src/styles/shadow.scss" as *;
+
+.icon {
+  width: 2rem;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+
+  .shadow {
+    @include shadow;
+  }
+}
