@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = () => {
   const isDevelopment = process.env.NODE_ENV !== "production";
@@ -14,6 +15,7 @@ module.exports = () => {
     },
     resolve: {
       extensions: [".ts", ".tsx", ".js", ".jsx"],
+      plugins: [new TsconfigPathsPlugin({})],
     },
     module: {
       rules: [
@@ -47,6 +49,10 @@ module.exports = () => {
         {
           test: /\.svg$/,
           use: ["@svgr/webpack"],
+        },
+        {
+          test: /\.(png|jpe?g|gif)$/i,
+          use: ["file-loader"],
         },
       ],
     },
