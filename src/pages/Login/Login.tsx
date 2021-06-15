@@ -1,43 +1,45 @@
-import React, { useState, ChangeEvent } from "react";
-import Input from "@@/components/shared/Input/Input";
+import { useState, ChangeEvent } from "react";
+import classnames from "classnames/bind";
 import Button from "@@/components/shared/Button/Button";
 import Link from "@@/components/shared/Link/Link";
-import Header from "@@/components/unit/Header/Header";
-import classnames from "classnames/bind";
+import LabelInput from "@@/components/unit/LabelInput/LabelInput";
 import styles from "./Login.module.scss";
 
 const cx = classnames.bind(styles);
 
 const Login = (): JSX.Element => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+  });
 
-  const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
-  };
-
-  const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
+  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setValues({
+      ...values,
+      [event.target.name]: event.target.value,
+    });
   };
 
   return (
     <>
-      <Header />
       {/* TODO: onSubmit */}
       <form className={cx("form")}>
-        <label htmlFor="email">이메일</label>
-        <Input
+        <LabelInput
+          label="이메일"
+          id="email"
           type="email"
-          value={email}
-          onChange={handleEmailChange}
+          value={values.email}
+          onChange={handleChange}
           autoComplete="email"
           name="email"
         />
-        <label htmlFor="password">비밀번호</label>
-        <Input
+
+        <LabelInput
+          label="비밀번호"
+          id="password"
           type="password"
-          value={password}
-          onChange={handlePasswordChange}
+          value={values.password}
+          onChange={handleChange}
           autoComplete="current-password"
           name="password"
         />
