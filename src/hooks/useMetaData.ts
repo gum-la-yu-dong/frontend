@@ -1,38 +1,71 @@
 import { useEffect, useState } from "react";
+import notFoundImg from "@@/assets/image/notFound.png";
 
 interface MetaData {
-  title?: string;
-  image?: string;
-  url?: string;
+  title: string;
+  image: string;
+  url: string;
 }
 
 const getHTML = async (url: string): Promise<string> => {
   const response = await fetch(url);
+
   return response.text();
 };
 
-const parseMetaData = (html: string): MetaData => {
-  const metaRegex =
-    /<meta[^>]+property="og:(title|image|url)"\s+content="([^"]+)"/g;
+const parse = {
+  ogRegex(keyword: keyof MetaData): RegExp {
+    return new RegExp(
+      `<meta[^>]+property="og:${keyword}"\\s+content="([^"]+)"`
+    );
+  },
 
-  const matches = html.matchAll(metaRegex);
+  altRegex: {
+    title: [/<title[^>]+>([^<]+)/],
+    image: [/<img[^>]+src="([^"]+)"/],
+    url: [],
+  },
 
-  const metadataEntries = [...matches].map(
-    ([, key, value]) => [key, value] as [keyof MetaData, string]
-  );
+  router(key: keyof MetaData, html: string): string | undefined {
+    const matched = this.ogRegex(key).exec(html);
 
-  // TODO: title, image, url을 파싱하지 못했을 때의 추가적인 파싱(title, h1, img) 추가하기
-
-  return Object.fromEntries(metadataEntries);
+    return matched
+      ? matched[1]
+      : this.altRegex[key].find((regex) => regex.test(html))?.exec(html)?.[1];
+  },
 };
 
-const useMetaData = (url: string): { [key: string]: string } => {
-  const [metaData, setMetaData] = useState({});
+const parseMetaData = (html: string): MetaData => {
+  const keys = ["title", "url", "image"] as (keyof MetaData)[];
+
+  const entries = keys
+    .map((key) => [key, parse.router(key, html)])
+    .filter(([, value]) => value);
+
+  return Object.fromEntries(entries) as MetaData;
+};
+
+const useMetaData = (url: string): MetaData => {
+  const [metaData, setMetaData] = useState<MetaData>({
+    image: notFoundImg,
+    url,
+    title: "",
+  });
 
   useEffect(() => {
     getHTML(url)
-      .then((html) => parseMetaData(html))
-      .then((meta) => setMetaData(meta))
+      .then((html) => {
+        const meta = parseMetaData(html);
+        const relativePathRegex = /^\/.[^/]+(.*)/;
+
+        if (relativePathRegex.test(meta.image)) {
+          const { origin } = new URL(url);
+          meta.image = origin + meta.image;
+        }
+
+        setMetaData((m) => ({ ...m, ...meta }));
+      })
+
       .catch((error: Error) => console.error(error.message));
   }, [url]);
 
