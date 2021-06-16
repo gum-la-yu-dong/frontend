@@ -14,7 +14,7 @@ export const Profile = Template.bind({});
 Profile.args = {
   src: yujoImg,
   alt: "유저 프로필",
-  className: "shadow",
+  shadow: true,
 };
 
 export const Search = Template.bind({});
