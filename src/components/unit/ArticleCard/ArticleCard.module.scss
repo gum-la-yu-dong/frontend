@@ -1,0 +1,44 @@
+@use "src/styles/ellipsis.scss" as *;
+@use "src/styles/shadow.scss" as *;
+
+.article-card {
+  @include shadow-md;
+
+  $color: black;
+
+  display: flex;
+  box-shadow: inset 0 0 2px $color;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: $color;
+
+  &:visited {
+    color: $color;
+  }
+
+  & .thumbnail {
+    width: 4rem;
+    aspect-ratio: 1 / 1;
+    border-radius: 0.4rem 0 0 0.4rem;
+    box-shadow: 2px 0 2px -2px $color;
+  }
+
+  & .section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.5rem;
+
+    & .title {
+      @include ellipsis(1, 1.7);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    & .url {
+      @include ellipsis(1, 1.7);
+      font-size: 0.75rem;
+      opacity: 0.5;
+    }
+  }
+}

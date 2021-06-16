@@ -1,16 +1,37 @@
-import Link, { LinkProps } from "@@/components/shared/Link/Link";
+import { AnchorHTMLAttributes } from "react";
+import classnames from "classnames/bind";
 import useMetaData from "@@/hooks/useMetaData";
+import styles from "./ArticleCard.module.scss";
 
-export type ArticleCardProps = LinkProps;
+export interface ArticleCardProps
+  extends AnchorHTMLAttributes<HTMLAnchorElement> {
+  href: string;
+}
 
-const ArticleCard = ({ to, ...props }: ArticleCardProps): JSX.Element => {
-  const metadata = useMetaData(to as string);
+const cx = classnames.bind(styles);
+
+const ArticleCard = ({
+  href,
+  className,
+  ...props
+}: ArticleCardProps): JSX.Element => {
+  const { title, image, url } = useMetaData(href);
 
   return (
-    <Link to={to} {...props}>
-      {/* TODO: metadata 가공해서 보여주기 */}
-      {JSON.stringify(metadata)}
-    </Link>
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer nofollow"
+      className={cx("article-card", className)}
+      {...props}
+    >
+      <img className={cx("thumbnail")} src={image} alt="아티클 썸네일" />
+      <section className={cx("section")}>
+        <h3 className={cx("title")}>{title}</h3>
+        <p className={cx("url")}>{url}</p>
+      </section>
+    </a>
   );
 };
+
 export default ArticleCard;
