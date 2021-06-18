@@ -19,7 +19,7 @@ Default.args = {
     user: {
       id: "asdf134sdkzjqwriyuo",
       name: "gumlayudong",
-      profile: yujoImg,
+      profileUrl: yujoImg,
     },
 
     title: "Typescript와 SCSS",
@@ -37,7 +37,7 @@ NoTag.args = {
     user: {
       id: "asdf134sdkzjqwriyuo",
       name: "gumlayudong",
-      profile: yujoImg,
+      profileUrl: yujoImg,
     },
 
     title: "검프 라이언 유조 동동",

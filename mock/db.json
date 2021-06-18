@@ -1,0 +1,20 @@
+{
+  "user": [
+    {
+      "email": "yujo@a.a",
+      "password": "asd",
+      "nickname": "yujo",
+      "introduction": "I`m yujo",
+      "profileUrl": "https://avatars.githubusercontent.com/u/61097373?v=4",
+      "githubUrl": "https://github.com/yujo11"
+    }
+  ],
+  "post": [
+    {
+      "id": 1,
+      "title": "Parcel로 간단하게 React + TypeScript 프로젝트 세팅하기 (feat. eslint, Tailwind)",
+      "content": "Parcel을 사용해 React + TypeScript 프로젝트를 세팅하는 방법을 정리하는 글입니다.",
+      "referenceUrl": "https://yujo11.github.io/React/Parcel%EB%A1%9C%20%EA%B0%84%EB%8B%A8%ED%95%98%EA%B2%8C%20React%20+%20TypeScript%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%84%B8%ED%8C%85%ED%95%98%EA%B8%B0%20(feat.%20eslint,%20Tailwind)/"
+    }
+  ]
+}
