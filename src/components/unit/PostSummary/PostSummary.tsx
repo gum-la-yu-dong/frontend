@@ -17,7 +17,7 @@ const PostSummary = ({
   <section className={cx("post-summary")}>
     <header className={cx("header")}>
       <Icon
-        src={user.profile}
+        src={user.profileUrl}
         alt="유저 프로필"
         shadow
         className={cx("Icon")}

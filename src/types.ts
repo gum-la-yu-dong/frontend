@@ -1,7 +1,9 @@
 export interface User {
   id: string;
   name: string;
-  profile?: string;
+  introduction?: string;
+  profileUrl?: string;
+  githubUrl?: string;
 }
 
 export interface Post {
